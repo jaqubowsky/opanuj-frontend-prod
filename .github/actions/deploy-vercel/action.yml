@@ -52,4 +52,4 @@ runs:
       if: ${{ inputs.mode == 'preview' }}
       uses: ./.github/actions/run-e2e
       with:
-        base_url: ${{ DEOPLOY_URL }}
+        base_url: ${{ DEPLOY_URL }}
