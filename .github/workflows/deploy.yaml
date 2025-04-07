@@ -57,7 +57,7 @@ jobs:
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
 
   build-and-deploy-vercel:
-    needs: tests
+    needs: clean
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
