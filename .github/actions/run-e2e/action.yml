@@ -1,0 +1,17 @@
+name: E2E Tests
+description: Run e2e tests
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "URL of environment to test"
+        required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: Run Playwright tests
+      run: npm run test:e2e
+      env:
+        BASE_URL: ${{ vars[format('{0}_URL', inputs.environment)] }}
