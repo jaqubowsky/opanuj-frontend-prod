@@ -6,7 +6,7 @@ on:
 jobs:
   deploy-vercel:
     environment:
-      name: 'Staging'
+      name: "Staging"
     runs-on: ubuntu-latest
 
     steps:
@@ -16,11 +16,8 @@ jobs:
       - name: Configure node
         uses: ./.github/actions/setup-project
 
-      - name: Lint code
-        run: npm run lint
-
-      - name: Run unit tests
-        run: npm run test
+      - name: Verify project
+        uses: ./.github/actions/verify-project
 
       - name: Build app
         run: npm run build
@@ -28,7 +25,7 @@ jobs:
       - name: Deploy app to Vercel production env
         uses: ./.github/actions/deploy-vercel
         with:
-          mode: 'production'
+          mode: "production"
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
         env:
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
