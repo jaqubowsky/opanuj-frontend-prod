@@ -13,5 +13,6 @@ runs:
   steps:
     - name: Run Playwright tests
       run: npm run test:e2e
+      shell: bash
       env:
-        BASE_URL: ${{ vars[format('{0}_URL', inputs.environment)] }}
+        BASE_URL: ${{ inputs.environment }}
