@@ -1,12 +1,10 @@
 name: E2E Tests
 description: Run e2e tests
 
-on:
-  workflow_dispatch:
-    inputs:
-      base_url:
-        description: "URL of environment to test"
-        required: true
+inputs:
+  base_url:
+    description: "URL of environment to test"
+    required: true
 
 runs:
   using: "composite"
