@@ -1,0 +1,15 @@
+name: Deploy on push
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy-netlify:
+    uses: ./.github/workflows/deploy-netlify.yml
+    secrets: inherit
+
+  deploy-vercel:
+    uses: ./.github/workflows/deploy-vercel.yml
+    secrets: inherit
