@@ -5,7 +5,7 @@ on:
     branches: main
 
 jobs:
-  tests:
+  clean:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -27,7 +27,7 @@ jobs:
         run: npm run test
 
   build-and-deploy-netlify:
-    needs: tests
+    needs: clean
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
