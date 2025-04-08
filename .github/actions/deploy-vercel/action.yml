@@ -21,23 +21,19 @@ runs:
       if: ${{ inputs.mode == 'production' }}
       run: |
         vercel pull --yes --environment=production --token=${{ inputs.vercel-token }}
-        vercel build --prod --token=${{ inputs.vercel-token }}
+        VITE_ENVIRONMENT=PROD vercel build --prod --token=${{ inputs.vercel-token }}
         vercel deploy --prebuilt --prod --token=${{ inputs.vercel-token }}
       shell: bash
-      env:
-        VITE_ENVIRONMENT: PROD
 
     - name: PREVIEW Vercel Deployment
       if: ${{ inputs.mode == 'preview' }}
       run: |
         vercel pull --yes --environment=preview --token=${{ inputs.vercel-token }}
-        vercel build --token=${{ inputs.vercel-token }}
+        VITE_ENVIRONMENT=PREVIEW vercel build --token=${{ inputs.vercel-token }}
         DEPLOY_OUTPUT="$(vercel deploy --token=${{ inputs.vercel-token }})"
         DEPLOY_URL=$(echo "$DEPLOY_OUTPUT" | grep http | tail -n 1)
         echo "DEPLOY_URL=$DEPLOY_URL" >> $GITHUB_ENV
       shell: bash
-      env:
-        VITE_ENVIRONMENT: PREVIEW
 
     - name: Comment with preview URL
       if: ${{ inputs.mode == 'preview' }}
