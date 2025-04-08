@@ -19,9 +19,6 @@ jobs:
       - name: Verify project
         uses: ./.github/actions/verify-project
 
-      - name: Build app
-        run: npm run build
-
       - name: Deploy app to Vercel production env
         uses: ./.github/actions/deploy-vercel
         with:
