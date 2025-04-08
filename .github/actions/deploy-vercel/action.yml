@@ -23,6 +23,8 @@ runs:
         vercel pull --yes --environment=production --token=${{ inputs.vercel-token }}
         vercel build --prod --token=${{ inputs.vercel-token }}
         vercel deploy --prebuilt --prod --token=${{ inputs.vercel-token }}
+      env:
+        VITE_ENVIRONMENT: "PROD"
       shell: bash
 
     - name: PREVIEW Vercel Deployment
@@ -33,6 +35,8 @@ runs:
         DEPLOY_OUTPUT="$(vercel deploy --token=${{ inputs.vercel-token }})"
         DEPLOY_URL=$(echo "$DEPLOY_OUTPUT" | grep http | tail -n 1)
         echo "DEPLOY_URL=$DEPLOY_URL" >> $GITHUB_ENV
+      env:
+        VITE_ENVIRONMENT: "PREVIEW"
       shell: bash
 
     - name: Comment with preview URL
