@@ -31,6 +31,8 @@ dist-ssr
 # .tfstate files
 *.tfstate
 *.tfstate.*
+*.tfvars
+*.tfvars.json
 
 # Crash log files
 crash.log
