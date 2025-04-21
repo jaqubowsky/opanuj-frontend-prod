@@ -63,7 +63,7 @@ resource "aws_lambda_function" "error_lambda" {
   role          = aws_iam_role.lambda_exec.arn
 
   filename         = "${var.lambda_source_dir}/dist/opanuj-frontend-error-lambda.zip"
-  source_code_hash = filebase64sha256("${var.lambda_source_dir}/dist/opanuj-frontend-error-lambda.zip")
+  source_code_hash = filesha256("${var.lambda_source_dir}/index.ts")
 
   depends_on = [
     data.external.lambda_builder_sh
