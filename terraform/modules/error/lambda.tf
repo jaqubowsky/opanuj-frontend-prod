@@ -1,12 +1,8 @@
 data "external" "lambda_builder_sh" {
-  program = ["bash", "-c", "cd ${var.lambda_source_dir} && npm install > /dev/null 2>&1 && npm run build > /dev/null 2>&1 && echo {}"]
+  program = ["bash", "-c", "cd ${var.lambda_source_dir} && npm install > '/dev/null' 2>&1 && npm run build > '/dev/null' 2>&1 && echo \"{ }\" "]
 }
 
-data "archive_file" "lambda_zip" {
-  type        = "zip"
-  source_dir  = "${var.lambda_source_dir}/dist"
-  output_path = "${var.lambda_source_dir}/dist/${var.name}-error-lambda.zip"
-}
+
 
 resource "aws_iam_role" "lambda_exec" {
   name = "LambdaExecutionRole"
@@ -66,8 +62,8 @@ resource "aws_lambda_function" "error_lambda" {
   handler       = "index.handler"
   role          = aws_iam_role.lambda_exec.arn
 
-  filename         = data.archive_file.lambda_zip.output_path
-  source_code_hash = data.archive_file.lambda_zip.output_base64sha256
+  filename         = "${var.lambda_source_dir}/dist/opanuj-frontend-error-lambda.zip"
+  source_code_hash = filebase64sha256("${var.lambda_source_dir}/dist/opanuj-frontend-error-lambda.zip")
 
   depends_on = [
     data.external.lambda_builder_sh

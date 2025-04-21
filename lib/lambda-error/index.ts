@@ -19,7 +19,7 @@ const cloudWatchClient = new CloudWatchClient({ region: "eu-central-1" });
 
 export const handler: Handler<EventInput, LambdaResponse> = async (event) => {
   const body = event.body ? JSON.parse(event.body) : null;
-  if (!body || !body.message) return buildResponse(400, `Invalid payload.`);
+  if (!body) return buildResponse(400, `Invalid payload.`);
 
   const params: PutMetricDataCommandInput = {
     Namespace: "AppMonitoring",

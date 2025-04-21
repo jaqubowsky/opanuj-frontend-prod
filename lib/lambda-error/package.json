@@ -4,7 +4,9 @@
   "description": "AWS Lambda - Error Tracking",
   "main": "index.js",
   "scripts": {
-    "build": "ncc build index.ts -o dist"
+    "build": "ncc build index.ts -o dist",
+    "zip": "cd dist && zip -r opanuj-frontend-error-lambda.zip index.js",
+    "prepare-lambda": "npm run build && npm run zip"
   },
   "author": "Opanuj Frontend",
   "license": "ISC",
