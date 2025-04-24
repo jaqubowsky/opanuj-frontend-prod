@@ -5,6 +5,9 @@ inputs:
   vercel-token:
     description: "Vercel token"
     required: true
+  featurevisor-datafile-url:
+    description: "Featurevisor Datafile URL"
+    required: true
 
 runs:
   using: "composite"
@@ -23,7 +26,7 @@ runs:
       shell: bash
       env:
         VITE_ENV_NAME: preview
-        VITE_FEATUREVISOR_DATAFILE_URL: ${{ secrets.FEATUREVISOR_DATAFILE_URL }}
+        VITE_FEATUREVISOR_DATAFILE_URL: ${{ inputs.featurevisor-datafile-url }}
         VITE_ENVIRONMENT: PREVIEW
 
     - name: Comment with preview URL
