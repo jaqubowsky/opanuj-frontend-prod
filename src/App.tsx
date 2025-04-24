@@ -1,11 +1,23 @@
+import { useFlag, useStatus } from "@featurevisor/react";
 import { useState } from "react";
 import "./App.css";
 import reactLogo from "./assets/react.svg";
 import { Version } from "./Version";
 import viteLogo from "/vite.svg";
 
+const FEATURE_NAME = "showSetCountButton";
+
 function App() {
   const [count, setCount] = useState(0);
+
+  const { isReady } = useStatus();
+  const isFeatureEnabled = useFlag(FEATURE_NAME, {
+    country: new URLSearchParams(window.location.search).get("country"),
+  });
+
+  if (!isReady) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <>
@@ -19,9 +31,11 @@ function App() {
       </div>
       <h1>Vite + React</h1>
       <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
+        {isFeatureEnabled ? (
+          <button onClick={() => setCount((count) => count + 1)}>
+            count is {count}
+          </button>
+        ) : null}
         <p>
           Edit <code>src/App.tsx</code> and save to test HMR
         </p>

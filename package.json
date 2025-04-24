@@ -12,6 +12,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@featurevisor/react": "1.35.3",
+    "@featurevisor/sdk": "1.35.3",
     "dotenv": "^16.4.7",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
