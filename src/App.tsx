@@ -1,4 +1,4 @@
-import { useFlag, useStatus } from "@featurevisor/react";
+import { useFlag } from "@featurevisor/react";
 import { useState } from "react";
 import "./App.css";
 import reactLogo from "./assets/react.svg";
@@ -10,14 +10,9 @@ const FEATURE_NAME = "showSetCountButton";
 function App() {
   const [count, setCount] = useState(0);
 
-  const { isReady } = useStatus();
   const isFeatureEnabled = useFlag(FEATURE_NAME, {
     country: new URLSearchParams(window.location.search).get("country"),
   });
-
-  if (!isReady) {
-    return <div>Loading...</div>;
-  }
 
   return (
     <>
