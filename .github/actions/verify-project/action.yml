@@ -1,13 +1,24 @@
 name: Verify
 description: Run tests and lint
 
-runs:
-  using: 'composite'
-  steps:
-      - name: Lint code
-        run: npm run lint
-        shell: bash
+inputs:
+  env-name:
+    description: "Environment Name"
+    required: true
+  featurevisor-datafile-url:
+    description: "Featurevisor Datafile URL"
+    required: true
 
-      - name: Run unit tests
-        run: npm run test
-        shell: bash
+runs:
+  using: "composite"
+  steps:
+    - name: Lint code
+      run: npm run lint
+      shell: bash
+
+    - name: Run unit tests
+      run: npm run test
+      shell: bash
+      env:
+        VITE_ENV_NAME: ${{ inputs.env-name }}
+        VITE_FEATUREVISOR_DATAFILE_URL: ${{ inputs.featurevisor-datafile-url }}
