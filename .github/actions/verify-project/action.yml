@@ -2,12 +2,12 @@ name: Verify
 description: Run tests and lint
 
 runs:
-  using: 'composite'
+  using: "composite"
   steps:
-      - name: Lint code
-        run: npm run lint
-        shell: bash
+    - name: Lint code
+      run: npm run lint
+      shell: bash
 
-      - name: Run unit tests
-        run: npm run test
-        shell: bash
+    - name: Run unit tests
+      run: npm run test
+      shell: bash

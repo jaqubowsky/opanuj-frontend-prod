@@ -1,11 +1,16 @@
-import { useState } from "react";
+import { useStatus } from "@featurevisor/react";
 import "./App.css";
 import reactLogo from "./assets/react.svg";
+import { Counter } from "./Couter";
 import { Version } from "./Version";
 import viteLogo from "/vite.svg";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const { isReady } = useStatus();
+
+  if (!isReady) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <>
@@ -19,9 +24,7 @@ function App() {
       </div>
       <h1>Vite + React</h1>
       <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
+        <Counter />
         <p>
           Edit <code>src/App.tsx</code> and save to test HMR
         </p>
