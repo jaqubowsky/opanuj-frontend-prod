@@ -19,9 +19,6 @@ jobs:
 
       - name: Verify project
         uses: ./.github/actions/verify-project
-        with:
-          env-name: preview
-          featurevisor-datafile-url: ${{ secrets.FEATUREVISOR_DATAFILE_URL }}
 
       - name: Deploy app to Vercel preview env
         uses: ./.github/actions/deploy-vercel

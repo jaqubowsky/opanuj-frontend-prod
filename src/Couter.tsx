@@ -14,10 +14,5 @@ export const Counter = () => {
     return null;
   }
 
-  return (
-    <div>
-      <button onClick={() => setCount(count + 1)}>Increment</button>
-      <p>Count: {count}</p>
-    </div>
-  );
+  return <button onClick={() => setCount(count + 1)}>count is {count}</button>;
 };

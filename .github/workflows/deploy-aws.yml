@@ -18,9 +18,6 @@ jobs:
 
       - name: Verify project
         uses: ./.github/actions/verify-project
-        with:
-          env-name: production
-          featurevisor-datafile-url: ${{ secrets.FEATUREVISOR_DATAFILE_URL }}
 
       - name: Build app
         run: npm run build
